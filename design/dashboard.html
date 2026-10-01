@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valvabox — Artist Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#110D24;--ink-2:#1E1840;--violet:#8B5CF6;--green:#19D27F;--green-d:#0FA968;--gold:#FFC233;--paper:#F6F5FB;--muted:#6B6785;--line:#E7E4F3}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+  h1,h2,h3,.brand,.num{font-family:"Space Grotesk",Inter,"DejaVu Sans",sans-serif;letter-spacing:-.02em}
+  aside{background:var(--ink);color:#BDB7DA;padding:24px 18px;display:flex;flex-direction:column;gap:4px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;color:#fff;margin:0 6px 26px}
+  .brand span span{color:var(--green)}
+  .nav a{display:flex;gap:12px;align-items:center;padding:11px 12px;border-radius:10px;color:#BDB7DA;text-decoration:none;font-size:14.5px}
+  .nav a.on{background:#241D4D;color:#fff}
+  .nav a b{margin-left:auto;background:var(--green);color:var(--ink);font-size:11px;padding:1px 7px;border-radius:99px}
+  .plan{margin-top:auto;background:#241D4D;border-radius:14px;padding:16px;font-size:13px}
+  .plan strong{color:#fff;display:block;font-size:15px;margin-bottom:4px}
+  main{padding:28px 34px}
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+  .top h1{font-size:30px}
+  .top p{color:var(--muted);font-size:14px}
+  .btn{display:inline-block;padding:11px 18px;border-radius:11px;font-weight:600;text-decoration:none;font-size:14px;border:0}
+  .btn-green{background:var(--green);color:var(--ink)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .kpis{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:16px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+  .kpi small{color:var(--muted);font-size:13px}
+  .kpi .num{font-size:30px;font-weight:700;margin:6px 0 4px}
+  .kpi .up{color:var(--green-d);font-size:13px;font-weight:600}
+  .kpi.wallet{background:var(--ink);color:#fff;border:0;position:relative;overflow:hidden}
+  .kpi.wallet small{color:#A9A3CC}
+  .kpi.wallet:after{content:"₦";position:absolute;right:-6px;bottom:-40px;font-size:150px;font-family:"Space Grotesk",Inter,"DejaVu Sans",sans-serif;color:rgba(255,255,255,.05);font-weight:700}
+  .kpi.wallet .btn{margin-top:10px;padding:8px 14px;font-size:13px}
+  .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:16px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+  .panel h2{font-size:18px;margin-bottom:4px}
+  .panel .muted{color:var(--muted);font-size:13px}
+  .chart{display:flex;align-items:flex-end;gap:10px;height:190px;margin-top:22px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .bar{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,var(--violet),var(--green))}
+  .bar.dim{opacity:.35}
+  .months{display:flex;gap:10px;margin-top:8px}
+  .months span{flex:1;text-align:center;font-size:11.5px;color:var(--muted)}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid var(--line);font-size:14px}
+  .row:first-of-type{border-top:0}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:9px}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+  th{text-align:left;font-weight:500;color:var(--muted);font-size:12.5px;padding:8px 6px;border-bottom:1px solid var(--line)}
+  td{padding:12px 6px;border-bottom:1px solid var(--line)}
+  .cov{width:38px;height:38px;border-radius:9px;display:inline-block;vertical-align:middle;margin-right:10px}
+  .st{font-size:11.5px;font-weight:600;padding:4px 9px;border-radius:99px}
+  .live{background:#E6FBF1;color:var(--green-d)}
+  .rev{background:#FFF6DB;color:#9A6B00}
+  .draft{background:#EEE8FF;color:#6D3FE0}
+  .chip{display:inline-block;font-size:11px;padding:2px 7px;border-radius:6px;background:var(--paper);border:1px solid var(--line);margin-right:4px}
+  .withdraw .bank{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px;margin:14px 0}
+  .withdraw .bank i{width:38px;height:38px;border-radius:10px;background:#F25A0F;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:700;font-size:12px}
+  .field{border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-family:"Space Grotesk",Inter,"DejaVu Sans",sans-serif;font-size:24px;font-weight:700;margin-bottom:8px}
+  .fx{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+  .withdraw .btn{width:100%;text-align:center}
+</style>
+</head>
+<body>
+<aside>
+  <div class="brand">
+    <svg width="34" height="34" viewBox="0 0 120 120"><defs><linearGradient id="g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#19D27F"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs><rect width="120" height="120" rx="30" fill="#1E1840"/><rect x="18" y="30" width="13" height="64" rx="6.5" fill="url(#g)"/><rect x="35" y="50" width="13" height="44" rx="6.5" fill="url(#g)"/><rect x="72" y="50" width="13" height="44" rx="6.5" fill="url(#g)"/><rect x="89" y="30" width="13" height="64" rx="6.5" fill="url(#g)"/><path d="M53.5 74.5 Q53.5 71 56.6 72.7 L67.4 79.4 Q70 81 67.4 82.6 L56.6 89.3 Q53.5 91 53.5 87.5 Z" fill="#FFC233"/></svg>
+        <span>valva<span>box</span></span>
+  </div>
+  <nav class="nav">
+    <a class="on" href="#">▣ Dashboard</a>
+    <a href="#">♪ Music releases</a>
+    <a href="#">▶ Videos</a>
+    <a href="#">✎ Lyrics <b>2</b></a>
+    <a href="#">↗ Analytics</a>
+    <a href="#">₦ Earnings &amp; wallet</a>
+    <a href="#">⇄ Royalty splits</a>
+    <a href="#">⚲ Smart links</a>
+    <a href="#">⚙ Settings</a>
+  </nav>
+  <div class="plan"><strong>Artist plan</strong>Renews 12 Mar 2027 · ₦18,000/yr<br>Unlimited releases</div>
+</aside>
+
+<main>
+  <div class="top">
+    <div><h1>Welcome back, Tobi 👋</h1><p>Here's how your music performed this month.</p></div>
+    <a class="btn btn-green" href="#">+ New release</a>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi wallet"><small>Wallet balance</small><div class="num">₦482,350.00</div><small>≈ $312.40 · rate ₦1,544/$</small><br><a class="btn btn-green" href="#">Withdraw</a></div>
+    <div class="kpi"><small>Streams (30 days)</small><div class="num">1.28M</div><span class="up">▲ 18.4%</span></div>
+    <div class="kpi"><small>Video views</small><div class="num">346K</div><span class="up">▲ 9.1%</span></div>
+    <div class="kpi"><small>Live releases</small><div class="num">14</div><span class="muted" style="font-size:13px;color:var(--muted)">2 in review</span></div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>Earnings by month</h2><p class="muted">Royalties credited to your wallet in Naira</p>
+      <div class="chart">
+        <div class="bar dim" style="height:30%"></div><div class="bar dim" style="height:38%"></div><div class="bar dim" style="height:34%"></div>
+        <div class="bar dim" style="height:47%"></div><div class="bar dim" style="height:52%"></div><div class="bar dim" style="height:49%"></div>
+        <div class="bar dim" style="height:61%"></div><div class="bar dim" style="height:66%"></div><div class="bar dim" style="height:72%"></div>
+        <div class="bar dim" style="height:70%"></div><div class="bar dim" style="height:84%"></div><div class="bar" style="height:96%"></div>
+      </div>
+      <div class="months"><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span></div>
+    </div>
+    <div class="panel">
+      <h2>Top stores</h2><p class="muted">Share of September earnings</p>
+      <div style="margin-top:12px">
+        <div class="row"><span><span class="dot" style="background:#1DB954"></span>Spotify</span><b>₦168,900</b></div>
+        <div class="row"><span><span class="dot" style="background:#FFB000"></span>Audiomack</span><b>₦94,210</b></div>
+        <div class="row"><span><span class="dot" style="background:#0A5BFF"></span>Boomplay</span><b>₦81,040</b></div>
+        <div class="row"><span><span class="dot" style="background:#FF0033"></span>YouTube</span><b>₦72,600</b></div>
+        <div class="row"><span><span class="dot" style="background:#FA2D48"></span>Apple Music</span><b>₦41,330</b></div>
+        <div class="row"><span><span class="dot" style="background:#8B5CF6"></span>Others</span><b>₦24,270</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>Recent releases</h2>
+      <table>
+        <tr><th>Release</th><th>Includes</th><th>Release date</th><th>Status</th></tr>
+        <tr><td><span class="cov" style="background:conic-gradient(#8B5CF6,#19D27F,#FFC233,#8B5CF6)"></span><b>Lagos Nights</b> (feat. Ada)</td><td><span class="chip">Audio</span><span class="chip">Video</span><span class="chip">Lyrics</span></td><td>17 Oct 2026</td><td><span class="st rev">In review</span></td></tr>
+        <tr><td><span class="cov" style="background:linear-gradient(135deg,#FF7A59,#110D24)"></span><b>Owambe</b> — EP</td><td><span class="chip">Audio</span><span class="chip">Lyrics</span></td><td>05 Sep 2026</td><td><span class="st live">Live</span></td></tr>
+        <tr><td><span class="cov" style="background:linear-gradient(135deg,#19D27F,#0A5BFF)"></span><b>Grace</b></td><td><span class="chip">Audio</span><span class="chip">Video</span></td><td>21 Jul 2026</td><td><span class="st live">Live</span></td></tr>
+        <tr><td><span class="cov" style="background:linear-gradient(135deg,#FFC233,#8B5CF6)"></span><b>No Wahala</b></td><td><span class="chip">Audio</span></td><td>—</td><td><span class="st draft">Draft</span></td></tr>
+      </table>
+    </div>
+    <div class="panel withdraw">
+      <h2>Withdraw earnings</h2><p class="muted">Paid out via Paystack Transfers</p>
+      <div class="bank"><i>GTB</i><div><b>Oluwatobi A.</b><br><span class="muted">GTBank · ••••4821</span></div></div>
+      <div class="field">₦ 250,000.00</div>
+      <div class="fx">Fee ₦50 · Arrives in minutes · Min. ₦5,000</div>
+      <a class="btn btn-dark" href="#">Withdraw ₦250,000</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

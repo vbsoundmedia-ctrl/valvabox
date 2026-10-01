@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valvabox — Music, Video &amp; Lyrics Distribution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#110D24; --ink-2:#1E1840; --violet:#8B5CF6; --green:#19D27F; --green-d:#0FA968;
+    --gold:#FFC233; --paper:#FAF9FF; --muted:#6B6785; --line:#E7E4F3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5}
+  h1,h2,h3,.brand{font-family:"Space Grotesk",Inter,"DejaVu Sans",sans-serif;letter-spacing:-.02em}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:26px;color:#fff;text-decoration:none}
+  .brand span span{color:var(--green)}
+  .links{display:flex;gap:28px;align-items:center}
+  .links a{color:#CFCAE8;text-decoration:none;font-size:15px}
+  .btn{display:inline-block;padding:12px 20px;border-radius:12px;font-weight:600;text-decoration:none;font-size:15px}
+  .btn-green{background:var(--green);color:var(--ink)}
+  .btn-ghost{border:1px solid #3A3366;color:#fff}
+  /* hero */
+  .hero{background:radial-gradient(1200px 500px at 85% -10%,#3B2A86 0%,transparent 60%),radial-gradient(800px 400px at 0% 100%,#0D3B2B 0%,transparent 60%),var(--ink);color:#fff;padding-bottom:90px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:50px}
+  .pill{display:inline-flex;gap:8px;align-items:center;background:#241D4D;border:1px solid #3A3366;color:#D8D3F5;padding:6px 14px;border-radius:99px;font-size:13px}
+  .pill b{color:var(--gold)}
+  h1{font-size:64px;line-height:1.02;margin:20px 0}
+  h1 em{font-style:normal;background:linear-gradient(90deg,var(--green),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{color:#BDB7DA;font-size:19px;max-width:520px}
+  .cta{display:flex;gap:14px;margin-top:30px}
+  .trust{margin-top:34px;color:#8F89B3;font-size:13px;display:flex;gap:18px;flex-wrap:wrap}
+  /* hero card */
+  .card{background:#fff;color:var(--ink);border-radius:22px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  .rel{display:flex;gap:16px;align-items:center}
+  .art{width:92px;height:92px;border-radius:14px;background:conic-gradient(from 200deg,#8B5CF6,#19D27F,#FFC233,#8B5CF6);position:relative}
+  .art:after{content:"";position:absolute;inset:30px;border-radius:50%;background:#110D24}
+  .rel h3{font-size:20px}
+  .rel p{color:var(--muted);font-size:13px}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:#E6FBF1;color:var(--green-d);margin-top:6px}
+  .stores{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+  .store{border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-size:12.5px;font-weight:600;display:flex;justify-content:space-between}
+  .store i{font-style:normal;color:var(--green-d)}
+  .earn{background:var(--ink);color:#fff;border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center}
+  .earn small{color:#9E98C2;display:block;font-size:12px}
+  .earn strong{font-family:"Space Grotesk",Inter,"DejaVu Sans",sans-serif;font-size:28px}
+  .earn .btn{padding:9px 14px;font-size:13px}
+  /* sections */
+  section{padding:84px 0}
+  .eyebrow{color:var(--violet);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.12em}
+  h2{font-size:42px;margin:8px 0 14px}
+  .sub{color:var(--muted);max-width:620px;font-size:17px}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+  .feat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+  .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px}
+  .feat h3{font-size:22px;margin-bottom:8px}
+  .feat p{color:var(--muted);font-size:15px}
+  .feat ul{margin-top:14px;list-style:none;font-size:14px}
+  .feat li{padding:5px 0;border-top:1px dashed var(--line)}
+  .feat li:before{content:"✓ ";color:var(--green-d);font-weight:700}
+  /* pricing */
+  .pricing{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+  .plan{border:1px solid var(--line);border-radius:22px;padding:30px;position:relative}
+  .plan.hot{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-10px)}
+  .plan.hot .muted{color:#A9A3CC}
+  .ribbon{position:absolute;top:-12px;right:24px;background:var(--gold);color:var(--ink);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+  .plan h3{font-size:20px}
+  .price{font-family:"Space Grotesk",Inter,"DejaVu Sans",sans-serif;font-size:46px;font-weight:700;margin:12px 0 2px}
+  .price small{font-size:16px;font-weight:500;opacity:.7}
+  .muted{color:var(--muted);font-size:14px}
+  .plan ul{list-style:none;margin:20px 0 26px;font-size:14.5px}
+  .plan li{padding:7px 0}
+  .plan li:before{content:"●";color:var(--green);margin-right:10px;font-size:10px;vertical-align:2px}
+  .plan .btn{display:block;text-align:center}
+  .btn-dark{background:var(--ink);color:#fff}
+  .pay{display:flex;justify-content:center;gap:12px;margin-top:36px;flex-wrap:wrap}
+  .pay span{border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--muted);background:var(--paper)}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;counter-reset:s}
+  .step{padding:22px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+  .step:before{counter-increment:s;content:"0" counter(s);font-family:"Space Grotesk",Inter,"DejaVu Sans",sans-serif;font-weight:700;font-size:30px;color:var(--violet)}
+  .step h3{font-size:18px;margin:8px 0 6px}
+  .step p{font-size:14px;color:var(--muted)}
+  footer{background:var(--ink);color:#8F89B3;padding:40px 0;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center}
+  @media (max-width:860px){
+    .hero-grid,.three,.plans,.steps{grid-template-columns:1fr}
+    h1{font-size:42px} h2{font-size:32px}
+    .links a:not(.btn){display:none}
+    .plan.hot{transform:none}
+    .stores{grid-template-columns:repeat(2,1fr)}
+    footer .wrap{flex-direction:column;gap:10px}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#">
+        <svg width="40" height="40" viewBox="0 0 120 120"><defs><linearGradient id="g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#19D27F"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs><rect width="120" height="120" rx="30" fill="#1E1840"/><rect x="18" y="30" width="13" height="64" rx="6.5" fill="url(#g)"/><rect x="35" y="50" width="13" height="44" rx="6.5" fill="url(#g)"/><rect x="72" y="50" width="13" height="44" rx="6.5" fill="url(#g)"/><rect x="89" y="30" width="13" height="64" rx="6.5" fill="url(#g)"/><path d="M53.5 74.5 Q53.5 71 56.6 72.7 L67.4 79.4 Q70 81 67.4 82.6 L56.6 89.3 Q53.5 91 53.5 87.5 Z" fill="#FFC233"/></svg>
+        <span>valva<span>box</span></span>
+      </a>
+      <div class="links">
+        <a href="#">Music</a><a href="#">Video</a><a href="#">Lyrics</a><a href="#pricing">Pricing</a>
+        <a href="#">Log in</a><a class="btn btn-green" href="#">Start releasing</a>
+      </div>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <span class="pill">🇳🇬 Built in Nigeria · Pay in <b>₦ Naira</b></span>
+        <h1>Your music. Every store. <em>Paid in Naira.</em></h1>
+        <p class="lead">Distribute songs, music videos and lyrics to Spotify, Apple Music, Audiomack, Boomplay, YouTube, TikTok and 150+ platforms. Keep 100% of your royalties and withdraw straight to your Nigerian bank account.</p>
+        <div class="cta"><a class="btn btn-green" href="#">Upload your first release</a><a class="btn btn-ghost" href="#pricing">See ₦ pricing</a></div>
+        <div class="trust"><span>✓ Pay with card, bank transfer or USSD</span><span>✓ Free ISRC &amp; UPC codes</span><span>✓ Synced lyrics on Spotify &amp; Apple</span></div>
+      </div>
+      <div class="card">
+        <div class="rel">
+          <div class="art"></div>
+          <div>
+            <h3>Lagos Nights (feat. Ada)</h3>
+            <p>Single · Afrobeats · Out Fri 17 Oct</p>
+            <span class="tag">● Live in 9 stores</span>
+          </div>
+        </div>
+        <div class="stores">
+          <div class="store">Spotify <i>✓</i></div><div class="store">Apple Music <i>✓</i></div><div class="store">Audiomack <i>✓</i></div>
+          <div class="store">Boomplay <i>✓</i></div><div class="store">YouTube <i>✓</i></div><div class="store">TikTok <i>✓</i></div>
+          <div class="store">Deezer <i>✓</i></div><div class="store">Amazon <i>✓</i></div><div class="store">Musixmatch <i>✓</i></div>
+        </div>
+        <div class="earn">
+          <div><small>Available to withdraw</small><strong>₦ 482,350.00</strong></div>
+          <a class="btn btn-green" href="#">Withdraw to GTBank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">One upload, three formats</div>
+    <h2>Music, video and lyrics — distributed together.</h2>
+    <p class="sub">Most distributors stop at audio. Valvabox ships the whole release: your track, the official video and time-synced lyrics.</p>
+    <div class="three">
+      <div class="feat">
+        <div class="ico" style="background:#EEE8FF">🎵</div>
+        <h3>Music distribution</h3>
+        <p>Singles, EPs and albums to every major DSP and the African stores that matter.</p>
+        <ul><li>Spotify, Apple, Audiomack, Boomplay</li><li>Free ISRC &amp; UPC</li><li>Pre-save smart links</li><li>Royalty splits with collaborators</li></ul>
+      </div>
+      <div class="feat">
+        <div class="ico" style="background:#E6FBF1">🎬</div>
+        <h3>Video distribution</h3>
+        <p>Get your music video onto YouTube, Apple Music, TIDAL and more — monetised.</p>
+        <ul><li>YouTube Official Artist Channel</li><li>Content ID protection</li><li>Apple Music &amp; TIDAL video</li><li>Video ISRC included</li></ul>
+      </div>
+      <div class="feat">
+        <div class="ico" style="background:#FFF6DB">📝</div>
+        <h3>Lyrics distribution</h3>
+        <p>Write or paste lyrics, sync them line-by-line in our editor, and we deliver them.</p>
+        <ul><li>Spotify &amp; Instagram lyrics</li><li>Apple Music synced lyrics</li><li>Built-in LRC sync editor</li><li>Pidgin, Yoruba, Igbo, Hausa supported</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="eyebrow">Simple Naira pricing</div>
+    <h2>Pay once a year. Keep 100%.</h2>
+    <p class="sub">No dollar cards needed. Pay in Naira with Paystack or Flutterwave — card, bank transfer or USSD.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Starter</h3>
+        <div class="price">₦0 <small>/ year</small></div>
+        <p class="muted">Pay per release · keep 85%</p>
+        <ul><li>₦5,000 per single</li><li>₦12,000 per EP / album</li><li>All major stores</li><li>Monthly earnings reports</li></ul>
+        <a class="btn btn-dark" href="#">Get started</a>
+      </div>
+      <div class="plan hot">
+        <span class="ribbon">Most popular</span>
+        <h3>Artist</h3>
+        <div class="price">₦18,000 <small>/ year</small></div>
+        <p class="muted">Unlimited releases · keep 100%</p>
+        <ul><li>Unlimited music for 1 artist</li><li>2 music videos / year</li><li>Lyrics + synced lyrics</li><li>Smart links &amp; pre-saves</li><li>Withdraw from ₦5,000</li></ul>
+        <a class="btn btn-green" href="#">Choose Artist</a>
+      </div>
+      <div class="plan">
+        <h3>Label</h3>
+        <div class="price">₦75,000 <small>/ year</small></div>
+        <p class="muted">Up to 20 artists · keep 100%</p>
+        <ul><li>Unlimited music &amp; lyrics</li><li>10 music videos / year</li><li>Custom label name</li><li>Splits &amp; team access</li><li>Priority support (WhatsApp)</li></ul>
+        <a class="btn btn-dark" href="#">Choose Label</a>
+      </div>
+    </div>
+    <div class="pay"><span>Paystack</span><span>Flutterwave</span><span>Visa · Mastercard · Verve</span><span>Bank transfer</span><span>USSD</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>Live in stores in four steps.</h2>
+    <div class="steps">
+      <div class="step"><h3>Create your account</h3><p>Sign up with email or phone and set up your artist profile.</p></div>
+      <div class="step"><h3>Upload your release</h3><p>Add audio, artwork, video and lyrics. We check everything before delivery.</p></div>
+      <div class="step"><h3>Pay in Naira</h3><p>Checkout with Paystack or Flutterwave in seconds.</p></div>
+      <div class="step"><h3>Get paid</h3><p>Track streams and withdraw earnings to any Nigerian bank.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#" style="font-size:20px"><span>valva<span>box</span></span></a>
+    <span>© 2026 Valvabox · valvabox.name.ng · Lagos, Nigeria</span>
+  </div>
+</footer>
+</body>
+</html>

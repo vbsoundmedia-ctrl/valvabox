@@ -1,0 +1,35 @@
+# Valvabox — lets you extract the whole app straight into public_html.
+# Every request is forwarded to the "public" folder; nothing else is reachable from the web.
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Belt and braces: never serve these even if rewriting is off
+<FilesMatch "^(\.env.*|composer\.(json|lock)|artisan|phpunit\.xml|.*\.(log|sql|sqlite))$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Larger uploads for WAV/FLAC/video (works when PHP runs as an Apache module)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 512M
+    php_value post_max_size 520M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+    php_value memory_limit 256M
+</IfModule>
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 512M
+    php_value post_max_size 520M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+    php_value memory_limit 256M
+</IfModule>

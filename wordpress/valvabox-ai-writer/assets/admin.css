@@ -1,0 +1,16 @@
+.vbai-wrap .vbai-lead { font-size: 14px; max-width: 760px; }
+.vbai-usage { color: #50575e; }
+.vbai-providers { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); max-width: 1100px; }
+.vbai-card { background: #fff; border: 1px solid #dcdcde; border-radius: 6px; padding: 14px 16px; }
+.vbai-card.is-active { border-color: #7b3fe4; box-shadow: 0 0 0 1px #7b3fe4; }
+.vbai-card-head { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.vbai-badge { margin-left: auto; font-size: 11px; background: #f0f0f1; border-radius: 10px; padding: 2px 8px; }
+.vbai-fields { display: grid; gap: 8px; margin-top: 10px; }
+.vbai-fields label { display: grid; gap: 2px; font-size: 12px; color: #50575e; }
+.vbai-fields input { width: 100%; }
+.vbai-fields .button { justify-self: start; }
+.vbai-test-result.is-ok { color: #008a20; }
+.vbai-test-result.is-error { color: #d63638; }
+.vbai-play { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; max-width: 1200px; }
+.vbai-play textarea { width: 100%; margin-top: 8px; }
+@media (max-width: 960px) { .vbai-play { grid-template-columns: 1fr; } }

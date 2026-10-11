@@ -15,6 +15,8 @@ Live at **valvabox.name.ng** (moving to **valvabox.net**).
 | `dist/valvabox-1.0.0.zip` | **Ready-to-upload install ZIP** for cPanel (includes all dependencies) |
 | `INSTALL.md` | Step-by-step cPanel installation guide |
 | `build-release.sh` | Rebuilds the ZIP from `platform/` |
+| `wordpress/valvabox-ai-writer/` | **Free AI writing assistant WordPress plugin** (block-editor sidebar + paragraph toolbar; Pollinations, Gemini, Groq, OpenRouter or Ollama): see its `readme.txt` |
+| `dist/valvabox-ai-writer-1.0.0.zip` | Plugin ZIP: upload under Plugins → Add New → Upload Plugin |
 
 ## Install
 Upload `dist/valvabox-1.0.0.zip` to `public_html`, extract it, and open `https://your-domain/install`. Full steps are in `INSTALL.md`.

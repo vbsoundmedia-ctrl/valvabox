@@ -1,0 +1,11 @@
+.vbai-sidebar .vbai-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.vbai-sidebar .vbai-row .components-button { justify-content: center; }
+.vbai-sidebar .vbai-hint { color: #757575; font-size: 12px; margin: 4px 0 0; }
+.vbai-sidebar .components-base-control + .components-base-control { margin-top: 12px; }
+.vbai-result-panel { background: #f6f3ff; }
+.vbai-preview {
+	background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 10px;
+	max-height: 320px; overflow: auto; font-size: 13px; line-height: 1.55;
+}
+.vbai-pre { white-space: pre-wrap; }
+.vbai-choice { display: block; width: 100%; height: auto; min-height: 36px; text-align: left; white-space: normal; border-bottom: 1px solid #eee; }
